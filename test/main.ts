@@ -1,4 +1,4 @@
-const wasmCode = await Deno.readFile('./app/rs/pkg/rs_bg.wasm')
+const wasmCode = await Deno.readFile('../rs/pkg/rs_bg.wasm')
 const wasmModule = new WebAssembly.Module(wasmCode)
 const wasmInstance = new WebAssembly.Instance(wasmModule)
 
