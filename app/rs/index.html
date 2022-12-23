@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'/>
+
+  <title>hello-wasm example</title>
+</head>
+<body>
+  <script type='module'>
+    import init, { initSync, main } from './pkg/rs.js'
+
+    init().then(() => {
+      main()
+    })
+  </script>
+</body>
+</html>
+
