@@ -18,11 +18,14 @@ pub fn main() -> String {
 
 #[wasm_bindgen]
 pub fn crop(image: &[u8], new_dims: Cube) -> Vec<u8> {
+  // Made by mattf_#6820
+  // :) thx for holding on for hours while I didn't understand anything about Rust.
+
   let image = Cursor::new(image);
   let image = Reader::with_format(image, ImageFormat::Png)
     .decode()
     .unwrap();
- 
+
   let cropped = image.crop_imm(
     new_dims.x,
     new_dims.y,
@@ -37,4 +40,3 @@ pub fn crop(image: &[u8], new_dims: Cube) -> Vec<u8> {
 
   ret
 }
-
