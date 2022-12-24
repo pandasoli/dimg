@@ -1,3 +1,4 @@
+import { encode as base64Encode } from 'https://deno.land/std@0.82.0/encoding/base64.ts'
 import init, { main, crop, Cube } from '../rs/pkg/rs.js'
 
 await init()
@@ -8,6 +9,8 @@ dim.x = 2
 dim.y = 2
 dim.w = 10
 dim.h = 10
+
+// lemon.svg -- 40x40
 
 crop(
   await Deno.readFile('images/lemon.svg'),
