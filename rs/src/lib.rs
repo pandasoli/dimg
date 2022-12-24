@@ -5,10 +5,23 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 pub struct Cube {
-  pub x: u32,
-  pub y: u32,
-  pub w: u32,
-  pub h: u32
+  x: u32,
+  y: u32,
+  w: u32,
+  h: u32
+}
+
+#[wasm_bindgen]
+impl Cube {
+  #[wasm_bindgen(constructor)]
+  pub fn new() -> Self {
+    Self {
+      x: 0,
+      y: 0,
+      w: 0,
+      h: 0
+    }
+  }
 }
 
 #[wasm_bindgen]
