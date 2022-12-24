@@ -1,9 +1,25 @@
-const wasmCode = await Deno.readFile('../rs/pkg/rs_bg.wasm')
-const wasmModule = new WebAssembly.Module(wasmCode)
-const wasmInstance = new WebAssembly.Instance(wasmModule)
+import init, { main, crop, Cube } from '../rs/pkg/rs.js'
 
-const main = wasmInstance.exports.main as CallableFunction
-console.log(main())
+await init()
+console.log( main() )
+
+const dim = new Cube
+dim.x = 2
+dim.y = 2
+dim.w = 10
+dim.h = 10
+
+crop(
+  await Deno.readFile('images/lemon.svg'),
+  dim
+)
+
+//await WebAssembly.instantiateStreaming(
+//  fetch(
+//    import.meta.resolve('../rs/pkg/rs_bg.wasm')
+//  ),
+//  {}
+//)
 
 // stopped:
 // https://deno.land/manual@v1.29.1/runtime/webassembly/using_wasm
