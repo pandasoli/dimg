@@ -1,6 +1,2 @@
-import crop from './src/crop.ts'
-
-export {
-  crop
-}
-
+export * from './types.ts'
+export * from './src/crop.ts'
