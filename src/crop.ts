@@ -1,12 +1,15 @@
-import { type ICube } from '../types.ts'
-import init, { crop } from '../rs/pkg/rs.js'
+import init, { crop as rs_crop, Rect as rs_rect } from '../rs/pkg/rs.js'
+import type { Rect, Res } from '../types.ts'
 import '../rs/pkg/rs.d.ts'
 
 
-const CropImg = async (img: Uint8Array, dim: ICube): Promise<Uint8Array> => {
+export const crop = async (img: Uint8Array, rect: Rect): Promise<Uint8Array> => {
   await init()
-  return crop(img, dim)
+  const dim = new rs_rect(rect.x, rect.y, rect.w, rect.h)
+  const res = rs_crop(img, dim)
+
+  if (res.status)
+    return res.res
+
+  throw new Error(res.err)
 }
-
-
-export default CropImg
