@@ -1,23 +1,21 @@
 // import { encode as base64Encode } from 'https://deno.land/std@0.82.0/encoding/base64.ts'
-import init, { main, crop, resize, Size, Rect } from '../rs/pkg/rs.js'
+import { crop } from '../mod.ts'
 
-await init()
-console.log( main() )
 
-// lemon.svg -- 40x40
-const lemon = await Deno.readFile('./images/lemon.svg')
+const filename = 'Free Hub.png'
+const img = await Deno.readFile(`../examples/${filename}`)
 
-const dim = new Rect
-dim.x = 2
-dim.y = 2
-dim.w = 10
-dim.h = 10
-
-const size = new Size
-size.w = 20
-size.h = 20
-
-console.log(
-  crop(lemon, dim)
-)
+await crop(img, {
+  x: 328,
+  y: 340,
+  w: 100,
+  h: 100
+})
+.then(res => {
+  Deno.writeFile(`../results/deno_${filename}`, res)
+  console.info('Ok')
+})
+.catch(err => {
+  console.error(err)
+})
 
