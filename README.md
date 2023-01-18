@@ -8,7 +8,3 @@
 - [ ] Resize
 - [ ] Convert
 - [ ] Get infos
-
-### Compile
-`wasm-pack build --target web`
-I always forget <3
