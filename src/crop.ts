@@ -1,6 +1,6 @@
-import init, { crop as rs_crop, Rect as rs_rect } from '../rs/pkg/rs.js'
-import type { Rect, Res } from '../types.ts'
-import '../rs/pkg/rs.d.ts'
+import init, { crop as rs_crop, Rect as rs_rect } from './pkg/rs.js'
+import type { Rect } from '../types.ts'
+import './pkg/rs.d.ts'
 
 
 export const crop = async (img: Uint8Array, rect: Rect): Promise<Uint8Array> => {
