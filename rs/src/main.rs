@@ -11,13 +11,19 @@ fn main() {
   let img = read("examples/Free Hub.png");
 
   if let Ok(img) = img {
-    let new_dims = Rect::new(340, 378, 30, 30);
+    let new_dims = Rect::new(328, 340, 100, 100);
     let res = crop(&img, new_dims);
 
-    let img = image::load_from_memory(res.as_slice());
+    if let Ok(res) = res {
+      let img = image::load_from_memory(res.as_slice());
 
-    if let Ok(img) = img {
-      img.save("results/Free Hub.png");
+      if let Ok(img) = img {
+        let res = img.save("results/Free Hub.png");
+        println!("{:?}", res);
+      }
+    }
+    else {
+      println!("{:?}", res);
     }
   }
   else {

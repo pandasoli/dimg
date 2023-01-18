@@ -1,15 +1,15 @@
 use std::io::Cursor;
-use image::{ ImageFormat, ImageOutputFormat };
-use image::io::Reader;
+use image::{ ImageOutputFormat, ImageError };
+use image::io::Reader as ImageReader;
 
 use crate::types::*;
 
 
-pub fn crop(image: &[u8], new_dims: Rect) -> Vec<u8> {
+pub fn crop(image: &[u8], new_dims: Rect) -> Result<Vec<u8>, ImageError> {
   let image = Cursor::new(image);
-  let image = Reader::with_format(image, ImageFormat::Png)
-    .decode()
-    .unwrap();
+  let image = ImageReader::new(image)
+    .with_guessed_format()?
+    .decode()?;
   let mut res = Vec::new();
 
   image.crop_imm(
@@ -21,6 +21,6 @@ pub fn crop(image: &[u8], new_dims: Rect) -> Vec<u8> {
   .write_to(&mut Cursor::new(&mut res), ImageOutputFormat::Png)
   .unwrap();
 
-  res
+  Ok(res)
 }
 
