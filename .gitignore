@@ -1,2 +1,4 @@
 rs/target/
 .vscode/
+node_modules/
+pnpm-lock.yaml
