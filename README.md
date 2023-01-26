@@ -1,27 +1,30 @@
 <div align='center'>
 
-  # DenoJS Image - dimg
-</div>
+# Deno.js Image Processor - dimg
+
 
 ### Features
 - [x] Crop
 - [ ] Resize
 - [ ] Convert
-- [ ] Get infos
+- [ ] Get info
 
-### Use
+## Use
 Importing
-```ts
-  import {
-    crop
-  } from '../mod.ts'
-```
+<div align='left'>
 
-### Crop image
+```ts
+  import * as dimg from 'https://deno.land/x/dimg/mod.ts'
+```
+</div>
+
+## Crop image
+<div align='left'>
+
 ```ts
   const img = await Deno.readFile(`./image.png`)
 
-  crop(
+  dimg.crop(
     img,
     {
       x: 328,
@@ -39,4 +42,4 @@ Importing
     console.error(err)
   })
 ```
-
+</div>
