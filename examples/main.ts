@@ -1,7 +1,13 @@
 import { crop } from '../mod.ts'
 
 
-const filename = 'Free Hub.svg'
+const filename = 'Free Hub.png'
+
+try {
+  await Deno.remove(`results/deno_${filename}`)
+}
+catch {}
+
 const img = await Deno.readFile(`images/${filename}`)
 
 crop(img, {
