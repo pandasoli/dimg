@@ -1,4 +1,6 @@
 rs/target/
 .vscode/
 node_modules/
+.husky/_/
+
 pnpm-lock.yaml
