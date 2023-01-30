@@ -2,5 +2,6 @@ rs/target/
 .vscode/
 node_modules/
 .husky/_/
+rs/pkg/
 
 pnpm-lock.yaml
