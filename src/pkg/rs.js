@@ -115,6 +115,190 @@ export function crop(image, new_dims) {
 }
 
 /**
+* @param {Uint8Array} image
+* @returns {Info}
+*/
+export function get_info(image) {
+    const ptr0 = passArray8ToWasm0(image, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.get_info(ptr0, len0);
+    return Info.__wrap(ret);
+}
+
+/**
+*/
+export class Info {
+
+    static __wrap(ptr) {
+        const obj = Object.create(Info.prototype);
+        obj.ptr = ptr;
+
+        return obj;
+    }
+
+    __destroy_into_raw() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_info_free(ptr);
+    }
+    /**
+    * @returns {boolean}
+    */
+    get status() {
+        const ret = wasm.__wbg_get_info_status(this.ptr);
+        return ret !== 0;
+    }
+    /**
+    * @param {boolean} arg0
+    */
+    set status(arg0) {
+        wasm.__wbg_set_info_status(this.ptr, arg0);
+    }
+    /**
+    * @returns {string}
+    */
+    get err() {
+        try {
+            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+            wasm.__wbg_get_info_err(retptr, this.ptr);
+            var r0 = getInt32Memory0()[retptr / 4 + 0];
+            var r1 = getInt32Memory0()[retptr / 4 + 1];
+            return getStringFromWasm0(r0, r1);
+        } finally {
+            wasm.__wbindgen_add_to_stack_pointer(16);
+            wasm.__wbindgen_free(r0, r1);
+        }
+    }
+    /**
+    * @param {string} arg0
+    */
+    set err(arg0) {
+        const ptr0 = passStringToWasm0(arg0, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        wasm.__wbg_set_info_err(this.ptr, ptr0, len0);
+    }
+    /**
+    * @returns {string}
+    */
+    get format() {
+        try {
+            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+            wasm.__wbg_get_info_format(retptr, this.ptr);
+            var r0 = getInt32Memory0()[retptr / 4 + 0];
+            var r1 = getInt32Memory0()[retptr / 4 + 1];
+            return getStringFromWasm0(r0, r1);
+        } finally {
+            wasm.__wbindgen_add_to_stack_pointer(16);
+            wasm.__wbindgen_free(r0, r1);
+        }
+    }
+    /**
+    * @param {string} arg0
+    */
+    set format(arg0) {
+        const ptr0 = passStringToWasm0(arg0, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        wasm.__wbg_set_info_format(this.ptr, ptr0, len0);
+    }
+    /**
+    * @returns {string}
+    */
+    get modified() {
+        try {
+            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+            wasm.__wbg_get_info_modified(retptr, this.ptr);
+            var r0 = getInt32Memory0()[retptr / 4 + 0];
+            var r1 = getInt32Memory0()[retptr / 4 + 1];
+            return getStringFromWasm0(r0, r1);
+        } finally {
+            wasm.__wbindgen_add_to_stack_pointer(16);
+            wasm.__wbindgen_free(r0, r1);
+        }
+    }
+    /**
+    * @param {string} arg0
+    */
+    set modified(arg0) {
+        const ptr0 = passStringToWasm0(arg0, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        wasm.__wbg_set_info_modified(this.ptr, ptr0, len0);
+    }
+    /**
+    * @returns {string}
+    */
+    get accessed() {
+        try {
+            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+            wasm.__wbg_get_info_accessed(retptr, this.ptr);
+            var r0 = getInt32Memory0()[retptr / 4 + 0];
+            var r1 = getInt32Memory0()[retptr / 4 + 1];
+            return getStringFromWasm0(r0, r1);
+        } finally {
+            wasm.__wbindgen_add_to_stack_pointer(16);
+            wasm.__wbindgen_free(r0, r1);
+        }
+    }
+    /**
+    * @param {string} arg0
+    */
+    set accessed(arg0) {
+        const ptr0 = passStringToWasm0(arg0, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        wasm.__wbg_set_info_accessed(this.ptr, ptr0, len0);
+    }
+    /**
+    * @returns {number}
+    */
+    get size() {
+        const ret = wasm.__wbg_get_info_size(this.ptr);
+        return ret >>> 0;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set size(arg0) {
+        wasm.__wbg_set_info_size(this.ptr, arg0);
+    }
+    /**
+    * @returns {number}
+    */
+    get height() {
+        const ret = wasm.__wbg_get_info_height(this.ptr);
+        return ret >>> 0;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set height(arg0) {
+        wasm.__wbg_set_info_height(this.ptr, arg0);
+    }
+    /**
+    * @returns {number}
+    */
+    get width() {
+        const ret = wasm.__wbg_get_info_width(this.ptr);
+        return ret >>> 0;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set width(arg0) {
+        wasm.__wbg_set_info_width(this.ptr, arg0);
+    }
+    /**
+    */
+    constructor() {
+        const ret = wasm.info_new();
+        return Info.__wrap(ret);
+    }
+}
+/**
 */
 export class Rect {
 
@@ -240,7 +424,7 @@ export class Res {
     get err() {
         try {
             const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-            wasm.__wbg_get_res_err(retptr, this.ptr);
+            wasm.__wbg_get_info_err(retptr, this.ptr);
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
             return getStringFromWasm0(r0, r1);
@@ -255,7 +439,7 @@ export class Res {
     set err(arg0) {
         const ptr0 = passStringToWasm0(arg0, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.__wbg_set_res_err(this.ptr, ptr0, len0);
+        wasm.__wbg_set_info_err(this.ptr, ptr0, len0);
     }
     /**
     * @returns {Uint8Array}
@@ -279,7 +463,7 @@ export class Res {
     set res(arg0) {
         const ptr0 = passArray8ToWasm0(arg0, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.__wbg_set_res_res(this.ptr, ptr0, len0);
+        wasm.__wbg_set_info_format(this.ptr, ptr0, len0);
     }
     /**
     */
