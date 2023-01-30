@@ -2,32 +2,54 @@ use std::fs::*;
 
 mod crop;
 mod types;
+mod info;
 
-use crop::{ crop };
+use crop::*;
 use types::*;
+use info::*;
 
 
 fn main() {
-  let img = read("../examples/images/Free Hub.png");
+  // Openning
+  let filename = "Free Hub.png";
+  let img = read("../examples/images/".to_owned() + filename);
 
   if let Ok(img) = img {
+    // Getting info
+    let info = get_info(&img);
+
+    if info.status {
+      println!("Dimentions: {}x{}", info.height, info.width);
+      println!("Format: {}", info.format);
+      println!("Size: {}", info.size);
+      println!("Accessed: {}", info.accessed);
+      println!("Modified: {}", info.modified);
+    }
+    else {
+      println!("failed on getting information: {}", info.err);
+    }
+
+    // Cropping
     let new_dims = Rect::new(328, 340, 100, 100);
     let res = crop(&img, new_dims);
 
-    if res.status {
-      let img = image::load_from_memory(res.res.as_slice());
+    if !res.status {
+      println!("failed on cropping: {}", res.err);
+    }
 
-      if let Ok(img) = img {
-        let res = img.save("../examples/results/Free Hub.png");
-        println!("afer saiving: {:?}", res);
-      }
+    // Saving
+    let img = image::load_from_memory(res.res.as_slice());
+
+    if let Ok(img) = img {
+      let res = img.save("../examples/results/rs_".to_owned() + filename);
+      println!("result: {:?}", res); 
     }
     else {
-      println!("after crop: {:?}", res.err);
+      println!("failed on loading from memory: {:?}", img); 
     }
   }
   else {
-    println!("after open: {:?}", img);
+    println!("failed to open: {:?}", img);
   }
 }
 
