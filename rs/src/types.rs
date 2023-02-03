@@ -19,47 +19,6 @@ pub struct Res {
   pub res: Vec<u8>
 }
 
-#[wasm_bindgen]
-pub struct Info {
-  pub status: bool,
-  #[wasm_bindgen(getter_with_clone)]
-  pub err: String,
-
-  #[wasm_bindgen(getter_with_clone)]
-  pub format: String,
-
-  #[wasm_bindgen(getter_with_clone)]
-  pub modified: String,
-
-  #[wasm_bindgen(getter_with_clone)]
-  pub accessed: String,
-
-  pub size: usize,
-
-  pub height: u32,
-  pub width: u32
-}
-
-
-#[wasm_bindgen]
-impl Info {
-  #[wasm_bindgen(constructor)]
-  pub fn new() -> Self {
-    Self {
-      status: false,
-      err: String::new(),
-
-      format: String::new(),
-      accessed: String::new(),
-      modified: String::new(),
-
-      size: 0,
-
-      height: 0,
-      width: 0
-    }
-  }
-}
 
 #[wasm_bindgen]
 impl Res {

@@ -14,20 +14,7 @@ Deno module for image processing
 
 - [x] Crop;
 - [ ] Resize;
-- [ ] Convert;
-- [ ] Get info;
-  - [x] Width;
-  - [x] Height;
-  - [x] Format;
-  - [ ] Last access time;
-  - [ ] Last modification time;
-  - [ ] Camera Make;
-  - [ ] Camera Model;
-  - [ ] Camera Focal length;
-  - [ ] Camera Aperture;
-  - [ ] Camera Exposure;
-  - [ ] Camera ISO;
-  - [ ] Camera Flash.
+- [ ] Convert.
 </div>
 
 ### To do
