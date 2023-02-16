@@ -8,11 +8,17 @@
 export function crop(image: Uint8Array, new_dims: Rect): Res;
 /**
 * @param {Uint8Array} image
-* @param {boolean} deform
+* @param {number} deform
 * @param {Size} new_dims
 * @returns {Res}
 */
-export function resize(image: Uint8Array, deform: boolean, new_dims: Size): Res;
+export function resize(image: Uint8Array, deform: number, new_dims: Size): Res;
+/**
+*/
+export enum ResizeWays {
+  Deform,
+  Cut,
+}
 /**
 */
 export class Rect {

@@ -115,7 +115,7 @@ function getArrayU8FromWasm0(ptr, len) {
 }
 /**
 * @param {Uint8Array} image
-* @param {boolean} deform
+* @param {number} deform
 * @param {Size} new_dims
 * @returns {Res}
 */
@@ -129,6 +129,9 @@ export function resize(image, deform, new_dims) {
     return Res.__wrap(ret);
 }
 
+/**
+*/
+export const ResizeWays = Object.freeze({ Deform:0,"0":"Deform",Cut:1,"1":"Cut", });
 /**
 */
 export class Rect {
