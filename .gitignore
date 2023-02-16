@@ -1,5 +1,4 @@
 rs/target/
-.vscode/
 node_modules/
 .husky/_/
 rs/pkg/
