@@ -1,23 +1,26 @@
-import { crop } from '../mod.ts'
+import { crop, resize, ResizeWay } from '../mod.ts'
 
 
 const filename = 'Free Hub.png'
+const method = 'resize'
 
 try {
-  await Deno.remove(`results/deno_${filename}`)
+  await Deno.remove(`results/deno_${method}_${filename}`)
 }
 catch {}
 
 const img = await Deno.readFile(`images/${filename}`)
 
-crop(img, {
-  x: 328,
-  y: 340,
-  w: 100,
-  h: 100
-})
+resize(
+  img,
+  ResizeWay.Deform,
+  {
+    w: 428,
+    h: 340
+  }
+)
 .then(res => {
-  Deno.writeFile(`results/deno_${filename}`, res)
+  Deno.writeFile(`results/deno_${method}_${filename}`, res)
   console.info('Ok')
 })
 .catch(err => {
