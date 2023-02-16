@@ -11,3 +11,8 @@ export type Res = {
   err: string
   res: Uint8Array
 }
+
+export enum ResizeWay {
+  Deform,
+  Cut
+}
