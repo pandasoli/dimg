@@ -10,6 +10,12 @@ pub struct Rect {
 }
 
 #[wasm_bindgen]
+pub struct Size {
+  pub w: u32,
+  pub h: u32
+}
+
+#[wasm_bindgen]
 pub struct Res {
   pub status: bool,
   #[wasm_bindgen(getter_with_clone)]
@@ -38,5 +44,13 @@ impl Rect {
   #[wasm_bindgen(constructor)]
   pub fn new(x: u32, y: u32, w: u32, h: u32) -> Self {
     Self { x, y, w, h }
+  }
+}
+
+#[wasm_bindgen]
+impl Size {
+  #[wasm_bindgen(constructor)]
+  pub fn new(w: u32, h: u32) -> Self {
+    Self { w, h }
   }
 }

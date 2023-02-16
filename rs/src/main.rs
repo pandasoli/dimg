@@ -1,39 +1,68 @@
-use std::fs::*;
+use std::{ env, fs::* };
 
 mod crop;
+mod resize;
 mod types;
 
 use crop::*;
+use resize::*;
 use types::*;
 
 
 fn main() {
+  let mut args = env::args();
+
+  // Verifying operation
+  let op = args.nth(1);
+  let op = if let Some(op) = op {
+    if !["crop", "resize"].contains(&op.as_str()) {
+      panic!("What you mean with {}? Choose crop of resize!", op);
+    }
+
+    op
+  }
+  else {
+    panic!("No operation. Just choose crop of resize!")
+  };
+
   // Openning
   let filename = "Free Hub.png";
   let img = read("../examples/images/".to_owned() + filename);
 
-  if let Ok(img) = img {
-    // Cropping
+  if let Err(_) = img {
+    panic!("failed to open: {:?}", img);
+  }
+
+  let img = img.unwrap();
+  let mut res: Res = Res::new();
+
+  // Cropping
+  if op == "crop" {
     let new_dims = Rect::new(328, 340, 100, 100);
-    let res = crop(&img, new_dims);
+    res = crop(&img, new_dims);
 
     if !res.status {
-      println!("failed on cropping: {}", res.err);
+      panic!("failed on cropping: {}", res.err);
     }
+  }
+  // Resizing
+  else if op == "resize" {
+    let new_dims = Size::new(428, 340);
+    res = resize(&img, false, new_dims);
 
-    // Saving
-    let img = image::load_from_memory(res.res.as_slice());
+    if !res.status {
+      panic!("failed on resizing: {}", res.err);
+    }
+  }
 
-    if let Ok(img) = img {
-      let res = img.save("../examples/results/rs_".to_owned() + filename);
-      println!("result: {:?}", res); 
-    }
-    else {
-      println!("failed on loading from memory: {:?}", img); 
-    }
+  // Saving
+  let img = image::load_from_memory(res.res.as_slice());
+
+  if let Ok(img) = img {
+    let res = img.save(["../examples/results/rs", op.as_str(), filename].join("_"));
+    println!("result: {:?}", res); 
   }
   else {
-    println!("failed to open: {:?}", img);
+    panic!("failed on loading from memory: {:?}", img); 
   }
 }
-

@@ -8,41 +8,11 @@
 export function crop(image: Uint8Array, new_dims: Rect): Res;
 /**
 * @param {Uint8Array} image
-* @returns {Info}
+* @param {boolean} deform
+* @param {Size} new_dims
+* @returns {Res}
 */
-export function get_info(image: Uint8Array): Info;
-/**
-*/
-export class Info {
-  free(): void;
-/**
-*/
-  constructor();
-/**
-*/
-  accessed: string;
-/**
-*/
-  err: string;
-/**
-*/
-  format: string;
-/**
-*/
-  height: number;
-/**
-*/
-  modified: string;
-/**
-*/
-  size: number;
-/**
-*/
-  status: boolean;
-/**
-*/
-  width: number;
-}
+export function resize(image: Uint8Array, deform: boolean, new_dims: Size): Res;
 /**
 */
 export class Rect {
@@ -84,11 +54,28 @@ export class Res {
 */
   status: boolean;
 }
+/**
+*/
+export class Size {
+  free(): void;
+/**
+* @param {number} w
+* @param {number} h
+*/
+  constructor(w: number, h: number);
+/**
+*/
+  h: number;
+/**
+*/
+  w: number;
+}
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly crop: (a: number, b: number, c: number) => number;
   readonly __wbg_rect_free: (a: number) => void;
   readonly __wbg_get_rect_x: (a: number) => number;
   readonly __wbg_set_rect_x: (a: number, b: number) => void;
@@ -98,38 +85,25 @@ export interface InitOutput {
   readonly __wbg_set_rect_w: (a: number, b: number) => void;
   readonly __wbg_get_rect_h: (a: number) => number;
   readonly __wbg_set_rect_h: (a: number, b: number) => void;
+  readonly __wbg_size_free: (a: number) => void;
   readonly __wbg_res_free: (a: number) => void;
   readonly __wbg_get_res_status: (a: number) => number;
   readonly __wbg_set_res_status: (a: number, b: number) => void;
+  readonly __wbg_get_res_err: (a: number, b: number) => void;
+  readonly __wbg_set_res_err: (a: number, b: number, c: number) => void;
   readonly __wbg_get_res_res: (a: number, b: number) => void;
-  readonly __wbg_info_free: (a: number) => void;
-  readonly __wbg_get_info_status: (a: number) => number;
-  readonly __wbg_set_info_status: (a: number, b: number) => void;
-  readonly __wbg_get_info_err: (a: number, b: number) => void;
-  readonly __wbg_set_info_err: (a: number, b: number, c: number) => void;
-  readonly __wbg_get_info_format: (a: number, b: number) => void;
-  readonly __wbg_set_info_format: (a: number, b: number, c: number) => void;
-  readonly __wbg_get_info_modified: (a: number, b: number) => void;
-  readonly __wbg_set_info_modified: (a: number, b: number, c: number) => void;
-  readonly __wbg_get_info_accessed: (a: number, b: number) => void;
-  readonly __wbg_set_info_accessed: (a: number, b: number, c: number) => void;
-  readonly __wbg_get_info_size: (a: number) => number;
-  readonly __wbg_set_info_size: (a: number, b: number) => void;
-  readonly __wbg_get_info_height: (a: number) => number;
-  readonly __wbg_set_info_height: (a: number, b: number) => void;
-  readonly __wbg_get_info_width: (a: number) => number;
-  readonly __wbg_set_info_width: (a: number, b: number) => void;
-  readonly info_new: () => number;
+  readonly __wbg_set_res_res: (a: number, b: number, c: number) => void;
   readonly res_new: () => number;
   readonly rect_new: (a: number, b: number, c: number, d: number) => number;
-  readonly __wbg_set_res_err: (a: number, b: number, c: number) => void;
-  readonly __wbg_set_res_res: (a: number, b: number, c: number) => void;
-  readonly __wbg_get_res_err: (a: number, b: number) => void;
-  readonly crop: (a: number, b: number, c: number) => number;
-  readonly get_info: (a: number, b: number) => number;
+  readonly size_new: (a: number, b: number) => number;
+  readonly __wbg_set_size_h: (a: number, b: number) => void;
+  readonly __wbg_get_size_w: (a: number) => number;
+  readonly __wbg_set_size_w: (a: number, b: number) => void;
+  readonly __wbg_get_size_h: (a: number) => number;
+  readonly resize: (a: number, b: number, c: number, d: number) => number;
+  readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
-  readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
 }
 
