@@ -25,6 +25,14 @@ pub struct Res {
   pub res: Vec<u8>
 }
 
+#[wasm_bindgen]
+#[repr(u8)]
+#[derive(PartialEq)]
+pub enum ResizeWays {
+  Deform,
+  Cut
+}
+
 
 #[wasm_bindgen]
 impl Res {

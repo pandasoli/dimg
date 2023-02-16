@@ -48,7 +48,7 @@ fn main() {
   // Resizing
   else if op == "resize" {
     let new_dims = Size::new(428, 340);
-    res = resize(&img, false, new_dims);
+    res = resize(&img, ResizeWays::Cut, new_dims);
 
     if !res.status {
       panic!("failed on resizing: {}", res.err);

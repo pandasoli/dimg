@@ -89,6 +89,12 @@ type Res = {
   err: string
   res: Uint8Array
 }
+
+
+enum ResizeWay {
+  Deform,
+  Cut
+}
 ```
 </div>
 
