@@ -25,9 +25,9 @@ pub fn crop(image: &[u8], new_dims: Rect) -> Res {
     return res;
   }
 
-  let image = image.unwrap();
+  let mut image = image.unwrap();
 
-  image.crop_imm(
+  image.crop(
     new_dims.x,
     new_dims.y,
     new_dims.w,

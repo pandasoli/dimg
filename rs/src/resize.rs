@@ -7,7 +7,7 @@ use crate::types::*;
 
 
 #[wasm_bindgen]
-pub fn resize(image: &[u8], deform: ResizeWays, new_dims: Size) -> Res {
+pub fn resize(image: &[u8], way: ResizeWays, new_dims: Size) -> Res {
   let mut res = Res::new();
   let image = Cursor::new(image);
   let image = ImageReader::new(image)
@@ -27,19 +27,9 @@ pub fn resize(image: &[u8], deform: ResizeWays, new_dims: Size) -> Res {
 
   let image = image.unwrap();
 
-  if deform == ResizeWays::Deform {
-    image.resize_exact(
-      new_dims.w,
-      new_dims.h,
-      FilterType::Triangle
-    )
-  }
-  else {
-    image.resize_to_fill(
-      new_dims.w,
-      new_dims.h,
-      FilterType::Triangle
-    )
+  match way {
+    ResizeWays::Deform => image.resize_exact(new_dims.w, new_dims.h, FilterType::Triangle),
+    ResizeWays::Cut => image.resize_to_fill(new_dims.w, new_dims.h, FilterType::Triangle)
   }
     .write_to(&mut Cursor::new(&mut res.res), ImageOutputFormat::Png)
     .unwrap();

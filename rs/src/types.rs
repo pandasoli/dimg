@@ -27,7 +27,6 @@ pub struct Res {
 
 #[wasm_bindgen]
 #[repr(u8)]
-#[derive(PartialEq)]
 pub enum ResizeWays {
   Deform,
   Cut
