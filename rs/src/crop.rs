@@ -1,33 +1,24 @@
 use std::io::Cursor;
 use image::{ ImageOutputFormat };
-use image::io::Reader as ImageReader;
 use wasm_bindgen::prelude::*;
 
+use crate::prepare::prepare;
 use crate::types::*;
 
 
 #[wasm_bindgen]
-pub fn crop(image: &[u8], new_dims: Rect) -> Res {
+pub fn crop(img: &[u8], new_dims: Rect) -> Res {
   let mut res = Res::new();
-  let image = Cursor::new(image);
-  let image = ImageReader::new(image)
-    .with_guessed_format();
 
-  if let Err(image) = image {
-    res.err = image.to_string();
-    return res;
-  }
+  let mut img = match prepare(img) {
+    Ok(img) => img,
+    Err(msg) => {
+      res.err = msg;
+      return res;
+    }
+  };
 
-  let image = image.unwrap().decode();
-
-  if let Err(image) = image {
-    res.err = image.to_string();
-    return res;
-  }
-
-  let mut image = image.unwrap();
-
-  image.crop(
+  img.crop(
     new_dims.x,
     new_dims.y,
     new_dims.w,

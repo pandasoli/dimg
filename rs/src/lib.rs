@@ -1,4 +1,5 @@
 
+mod prepare;
 mod crop;
 mod resize;
 mod flip;
