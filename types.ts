@@ -16,3 +16,8 @@ export enum ResizeWay {
   Deform,
   Cut
 }
+
+export enum Direction {
+  Horizontal,
+  Vertical
+}

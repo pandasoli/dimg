@@ -33,6 +33,13 @@ pub enum ResizeWays {
   Cut
 }
 
+#[wasm_bindgen]
+#[repr(u8)]
+pub enum Direction {
+  Horizontal,
+  Vertical
+}
+
 
 #[wasm_bindgen]
 impl Res {

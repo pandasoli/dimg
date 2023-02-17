@@ -2,10 +2,12 @@ use std::{ env, fs::* };
 
 mod crop;
 mod resize;
+mod flip;
 mod types;
 
 use crop::*;
 use resize::*;
+use flip::*;
 use types::*;
 
 
@@ -15,7 +17,7 @@ fn main() {
   // Verifying operation
   let op = args.nth(1);
   let op = if let Some(op) = op {
-    if !["crop", "resize"].contains(&op.as_str()) {
+    if !["crop", "resize", "flip"].contains(&op.as_str()) {
       panic!("What you mean with {}? Choose crop of resize!", op);
     }
 
@@ -52,6 +54,14 @@ fn main() {
 
     if !res.status {
       panic!("failed on resizing: {}", res.err);
+    }
+  }
+  // Fliping
+  else if op == "flip" {
+    res = flip(&img, Direction::Vertical);
+
+    if !res.status {
+      panic!("failed on fliping: {}", res.err);
     }
   }
 
