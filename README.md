@@ -15,7 +15,7 @@ Deno module for image processing
 - [x] Crop
 - [x] Resize
 - [ ] Convert
-- [ ] Flip
+- [x] Flip
 - [ ] Rotate
 - [ ] Apply filter
 - [ ] Write text
