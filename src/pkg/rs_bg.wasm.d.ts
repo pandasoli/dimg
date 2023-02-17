@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export const memory: WebAssembly.Memory;
+export function resize(a: number, b: number, c: number, d: number): number;
 export function crop(a: number, b: number, c: number): number;
 export function __wbg_rect_free(a: number): void;
 export function __wbg_get_rect_x(a: number): number;
@@ -26,7 +27,7 @@ export function __wbg_set_size_h(a: number, b: number): void;
 export function __wbg_get_size_w(a: number): number;
 export function __wbg_set_size_w(a: number, b: number): void;
 export function __wbg_get_size_h(a: number): number;
-export function resize(a: number, b: number, c: number, d: number): number;
+export function flip(a: number, b: number, c: number): number;
 export function __wbindgen_malloc(a: number): number;
 export function __wbindgen_add_to_stack_pointer(a: number): number;
 export function __wbindgen_free(a: number, b: number): void;

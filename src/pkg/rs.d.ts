@@ -1,23 +1,35 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {Uint8Array} image
-* @param {Rect} new_dims
-* @returns {Res}
-*/
-export function crop(image: Uint8Array, new_dims: Rect): Res;
-/**
-* @param {Uint8Array} image
-* @param {number} deform
+* @param {Uint8Array} img
+* @param {number} way
 * @param {Size} new_dims
 * @returns {Res}
 */
-export function resize(image: Uint8Array, deform: number, new_dims: Size): Res;
+export function resize(img: Uint8Array, way: number, new_dims: Size): Res;
+/**
+* @param {Uint8Array} img
+* @param {Rect} new_dims
+* @returns {Res}
+*/
+export function crop(img: Uint8Array, new_dims: Rect): Res;
+/**
+* @param {Uint8Array} img
+* @param {number} dir
+* @returns {Res}
+*/
+export function flip(img: Uint8Array, dir: number): Res;
 /**
 */
 export enum ResizeWays {
   Deform,
   Cut,
+}
+/**
+*/
+export enum Direction {
+  Horizontal,
+  Vertical,
 }
 /**
 */
@@ -81,6 +93,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly resize: (a: number, b: number, c: number, d: number) => number;
   readonly crop: (a: number, b: number, c: number) => number;
   readonly __wbg_rect_free: (a: number) => void;
   readonly __wbg_get_rect_x: (a: number) => number;
@@ -106,7 +119,7 @@ export interface InitOutput {
   readonly __wbg_get_size_w: (a: number) => number;
   readonly __wbg_set_size_w: (a: number, b: number) => void;
   readonly __wbg_get_size_h: (a: number) => number;
-  readonly resize: (a: number, b: number, c: number, d: number) => number;
+  readonly flip: (a: number, b: number, c: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
