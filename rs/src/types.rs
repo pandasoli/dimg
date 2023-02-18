@@ -39,6 +39,14 @@ pub enum Direction {
   Vertical
 }
 
+#[wasm_bindgen]
+#[repr(u8)]
+pub enum Degrees {
+  NineTen,
+  OneHundredAndEighty,
+  TwoHundredAndSeventy
+}
+
 
 #[wasm_bindgen]
 impl Res {

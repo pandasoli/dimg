@@ -21,3 +21,9 @@ export enum Direction {
   Horizontal,
   Vertical
 }
+
+export enum Degrees {
+  NineTen,
+  OneHundredAndEighty,
+  TwoHundredAndSeventy
+}

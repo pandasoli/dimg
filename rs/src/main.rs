@@ -4,11 +4,13 @@ mod prepare;
 mod crop;
 mod resize;
 mod flip;
+mod rotate;
 mod types;
 
 use crop::*;
 use resize::*;
 use flip::*;
+use rotate::*;
 use types::*;
 
 
@@ -18,7 +20,7 @@ fn main() {
   // Verifying operation
   let op = args.nth(1);
   let op = if let Some(op) = op {
-    if !["crop", "resize", "flip"].contains(&op.as_str()) {
+    if !["crop", "resize", "flip", "rotate"].contains(&op.as_str()) {
       panic!("What you mean with {}? Choose crop of resize!", op);
     }
 
@@ -63,6 +65,14 @@ fn main() {
 
     if !res.status {
       panic!("failed on fliping: {}", res.err);
+    }
+  }
+  // Rotating
+  else if op == "rotate" {
+    res = rotate(&img, Degrees::TwoHundredAndSeventy);
+
+    if !res.status {
+      panic!("failed on rotating: {}", res.err);
     }
   }
 

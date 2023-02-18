@@ -16,7 +16,7 @@ Deno module for image processing
 - [x] Resize
 - [ ] Convert
 - [x] Flip
-- [ ] Rotate
+- [x] Rotate
 - [ ] Apply filter
 - [ ] Write text
 - [ ] Join images
@@ -30,7 +30,8 @@ Deno module for image processing
 
   <div align='left'>
 
-  - [ ] Use `Result<>` to return features results.
+  - [ ] Use `Result<>` to return features results
+  - [ ] More degrees for rotate
   </div>
 </details>
 
