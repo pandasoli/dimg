@@ -18,52 +18,6 @@ function getStringFromWasm0(ptr, len) {
     return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
 }
 
-let WASM_VECTOR_LEN = 0;
-
-function passArray8ToWasm0(arg, malloc) {
-    const ptr = malloc(arg.length * 1);
-    getUint8Memory0().set(arg, ptr / 1);
-    WASM_VECTOR_LEN = arg.length;
-    return ptr;
-}
-
-function _assertClass(instance, klass) {
-    if (!(instance instanceof klass)) {
-        throw new Error(`expected instance of ${klass.name}`);
-    }
-    return instance.ptr;
-}
-/**
-* @param {Uint8Array} img
-* @param {number} way
-* @param {Size} new_dims
-* @returns {Res}
-*/
-export function resize(img, way, new_dims) {
-    const ptr0 = passArray8ToWasm0(img, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    _assertClass(new_dims, Size);
-    var ptr1 = new_dims.ptr;
-    new_dims.ptr = 0;
-    const ret = wasm.resize(ptr0, len0, way, ptr1);
-    return Res.__wrap(ret);
-}
-
-/**
-* @param {Uint8Array} img
-* @param {Rect} new_dims
-* @returns {Res}
-*/
-export function crop(img, new_dims) {
-    const ptr0 = passArray8ToWasm0(img, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    _assertClass(new_dims, Rect);
-    var ptr1 = new_dims.ptr;
-    new_dims.ptr = 0;
-    const ret = wasm.crop(ptr0, len0, ptr1);
-    return Res.__wrap(ret);
-}
-
 let cachedInt32Memory0 = new Int32Array();
 
 function getInt32Memory0() {
@@ -72,6 +26,8 @@ function getInt32Memory0() {
     }
     return cachedInt32Memory0;
 }
+
+let WASM_VECTOR_LEN = 0;
 
 const cachedTextEncoder = new TextEncoder('utf-8');
 
@@ -129,6 +85,63 @@ function passStringToWasm0(arg, malloc, realloc) {
 function getArrayU8FromWasm0(ptr, len) {
     return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
 }
+
+function passArray8ToWasm0(arg, malloc) {
+    const ptr = malloc(arg.length * 1);
+    getUint8Memory0().set(arg, ptr / 1);
+    WASM_VECTOR_LEN = arg.length;
+    return ptr;
+}
+
+function _assertClass(instance, klass) {
+    if (!(instance instanceof klass)) {
+        throw new Error(`expected instance of ${klass.name}`);
+    }
+    return instance.ptr;
+}
+/**
+* @param {Uint8Array} img
+* @param {number} way
+* @param {Size} new_dims
+* @returns {Res}
+*/
+export function resize(img, way, new_dims) {
+    const ptr0 = passArray8ToWasm0(img, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    _assertClass(new_dims, Size);
+    var ptr1 = new_dims.ptr;
+    new_dims.ptr = 0;
+    const ret = wasm.resize(ptr0, len0, way, ptr1);
+    return Res.__wrap(ret);
+}
+
+/**
+* @param {Uint8Array} img
+* @param {Rect} new_dims
+* @returns {Res}
+*/
+export function crop(img, new_dims) {
+    const ptr0 = passArray8ToWasm0(img, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    _assertClass(new_dims, Rect);
+    var ptr1 = new_dims.ptr;
+    new_dims.ptr = 0;
+    const ret = wasm.crop(ptr0, len0, ptr1);
+    return Res.__wrap(ret);
+}
+
+/**
+* @param {Uint8Array} img
+* @param {number} deg
+* @returns {Res}
+*/
+export function rotate(img, deg) {
+    const ptr0 = passArray8ToWasm0(img, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.rotate(ptr0, len0, deg);
+    return Res.__wrap(ret);
+}
+
 /**
 * @param {Uint8Array} img
 * @param {number} dir
@@ -147,6 +160,9 @@ export const ResizeWays = Object.freeze({ Deform:0,"0":"Deform",Cut:1,"1":"Cut",
 /**
 */
 export const Direction = Object.freeze({ Horizontal:0,"0":"Horizontal",Vertical:1,"1":"Vertical", });
+/**
+*/
+export const Degrees = Object.freeze({ NineTen:0,"0":"NineTen",OneHundredAndEighty:1,"1":"OneHundredAndEighty",TwoHundredAndSeventy:2,"2":"TwoHundredAndSeventy", });
 /**
 */
 export class Rect {
