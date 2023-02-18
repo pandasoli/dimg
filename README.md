@@ -69,44 +69,6 @@ import * as dimg from 'https://deno.land/x/dimg/mod.ts'
 </div>
 <br/>
 
-## Data Types
-<div align='left'>
-
-```ts
-type Rect = {
-  x: number
-  y: number
-  w: number
-  h: number
-}
-
-type Size = {
-  w: number
-  h: number
-}
-
-type Res = {
-  status: boolean
-  err: string
-  res: Uint8Array
-}
-
-
-enum ResizeWay {
-  Deform,
-  Cut
-}
-```
-</div>
-
-> You probably will never see the `Res` type anywhere,  
-It is the type that Rust returns, but in the Deno code we transform its bad result in `throw new Error(res.err)`.
-<br/>
-<br/>
-_(Because of the WebAssembly the types in the pkg folder were made with classes)_
-
-<br/>
-
 ## Crop image
 `crop(img: Uint8Array, rect: Rect)`
 
@@ -136,9 +98,41 @@ dimg.crop(
 <br/>
 
 ## Resize image
-`crop(img: Uint8Array, deform: boolean, size: Size)`
+`resize(img: Uint8Array, deform: boolean, size: Size)`
 
 The same thing as cropping, but this time use the `resize` function.  
 And of course see the difference of the parameters type.
 
-The `deform` parameter is for whether the image should be cut or deformed/redeemed depending on the dimensions.
+The `deform` parameter is for whether the image should be cut or deformed/redimeniated depending on the dimensions.
+<br/>
+
+## Flip image
+`flip(img: Uint8Array, dir: Direction)`
+
+The `Direction` type definition:
+<div align='left'>
+
+```ts
+export enum Direction {
+  Horizontal,
+  Vertical
+}
+```
+</div>
+<br/>
+
+## Rotate image
+`rotate(img: Uint8Array, deg: Degrees)`
+
+Unfortunately the `Degrees` type have just 3 options:
+<div align='left'>
+
+```ts
+export enum Degrees {
+  NineTen,
+  OneHundredAndEighty,
+  TwoHundredAndSeventy
+}
+```
+</div>
+<br/>
