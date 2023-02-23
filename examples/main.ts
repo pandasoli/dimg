@@ -1,8 +1,8 @@
-import { crop, flip, resize, ResizeWay, Direction } from '../mod.ts'
+import { rotate, crop, flip, resize, ResizeWay, Direction } from '../mod.ts'
 
 
 const filename = 'Free Hub.png'
-const method = 'flip'
+const method = 'rotate'
 
 try {
   await Deno.remove(`results/deno_${method}_${filename}`)
@@ -11,9 +11,9 @@ catch {}
 
 const img = await Deno.readFile(`images/${filename}`)
 
-flip(
+rotate(
   img,
-  Direction.Vertical
+  75
 )
 .then(res => {
   Deno.writeFile(`results/deno_${method}_${filename}`, res)

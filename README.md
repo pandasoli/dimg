@@ -31,7 +31,6 @@ Deno module for image processing
   <div align='left'>
 
   - [ ] Use `Result<>` to return features results
-  - [ ] More degrees for rotate
   </div>
 </details>
 
@@ -103,7 +102,7 @@ dimg.crop(
 The same thing as cropping, but this time use the `resize` function.  
 And of course see the difference of the parameters type.
 
-The `deform` parameter is for whether the image should be cut or deformed/redimeniated depending on the dimensions.
+The `deform` parameter is for whether the image should be cut or deformed/resized depending on the dimensions.
 <br/>
 
 ## Flip image
@@ -122,17 +121,8 @@ export enum Direction {
 <br/>
 
 ## Rotate image
-`rotate(img: Uint8Array, deg: Degrees)`
+`rotate(img: Uint8Array, deg: number)`
 
-Unfortunately the `Degrees` type have just 3 options:
-<div align='left'>
-
-```ts
-export enum Degrees {
-  NineTen,
-  OneHundredAndEighty,
-  TwoHundredAndSeventy
-}
-```
-</div>
+The `deg` parameter expects the number of degrees you want to rotate the image.  
+(i.e.: from 0 to 360)
 <br/>

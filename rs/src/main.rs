@@ -30,7 +30,7 @@ fn main() {
     panic!("No operation. Just choose crop of resize!")
   };
 
-  // Openning
+  // Opening
   let filename = "Free Hub.png";
   let img = read("../examples/images/".to_owned() + filename);
 
@@ -59,17 +59,17 @@ fn main() {
       panic!("failed on resizing: {}", res.err);
     }
   }
-  // Fliping
+  // Flipping
   else if op == "flip" {
     res = flip(&img, Direction::Vertical);
 
     if !res.status {
-      panic!("failed on fliping: {}", res.err);
+      panic!("failed on flipping: {}", res.err);
     }
   }
   // Rotating
   else if op == "rotate" {
-    res = rotate(&img, Degrees::TwoHundredAndSeventy);
+    res = rotate(&img, 50);
 
     if !res.status {
       panic!("failed on rotating: {}", res.err);

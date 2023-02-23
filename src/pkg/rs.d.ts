@@ -15,16 +15,16 @@ export function resize(img: Uint8Array, way: number, new_dims: Size): Res;
 export function crop(img: Uint8Array, new_dims: Rect): Res;
 /**
 * @param {Uint8Array} img
-* @param {number} deg
-* @returns {Res}
-*/
-export function rotate(img: Uint8Array, deg: number): Res;
-/**
-* @param {Uint8Array} img
 * @param {number} dir
 * @returns {Res}
 */
 export function flip(img: Uint8Array, dir: number): Res;
+/**
+* @param {Uint8Array} img
+* @param {number} deg
+* @returns {Res}
+*/
+export function rotate(img: Uint8Array, deg: number): Res;
 /**
 */
 export enum ResizeWays {
@@ -36,13 +36,6 @@ export enum ResizeWays {
 export enum Direction {
   Horizontal,
   Vertical,
-}
-/**
-*/
-export enum Degrees {
-  NineTen,
-  OneHundredAndEighty,
-  TwoHundredAndSeventy,
 }
 /**
 */
@@ -106,6 +99,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly resize: (a: number, b: number, c: number, d: number) => number;
   readonly __wbg_rect_free: (a: number) => void;
   readonly __wbg_get_rect_x: (a: number) => number;
   readonly __wbg_set_rect_x: (a: number, b: number) => void;
@@ -130,13 +124,12 @@ export interface InitOutput {
   readonly __wbg_get_size_w: (a: number) => number;
   readonly __wbg_set_size_w: (a: number, b: number) => void;
   readonly __wbg_get_size_h: (a: number) => number;
-  readonly resize: (a: number, b: number, c: number, d: number) => number;
   readonly crop: (a: number, b: number, c: number) => number;
-  readonly rotate: (a: number, b: number, c: number) => number;
   readonly flip: (a: number, b: number, c: number) => number;
+  readonly rotate: (a: number, b: number, c: number) => number;
+  readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
-  readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
 }
 
