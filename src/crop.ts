@@ -1,5 +1,5 @@
+/// <reference types='./pkg/rs.d.ts'/>
 import init, { crop, Rect } from './pkg/rs.js'
-import './pkg/rs.d.ts'
 
 
 export default async (img: Uint8Array, { x, y, w, h }: Rect): Promise<Uint8Array> => {

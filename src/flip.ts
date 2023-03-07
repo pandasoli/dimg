@@ -1,5 +1,5 @@
+/// <reference types='./pkg/rs.d.ts'/>
 import init, { flip, Direction } from './pkg/rs.js'
-import './pkg/rs.d.ts'
 
 
 export default async (img: Uint8Array, dir: Direction): Promise<Uint8Array> => {

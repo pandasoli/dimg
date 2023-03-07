@@ -1,5 +1,5 @@
-import init, { rotate, Degrees } from './pkg/rs.js'
-import './pkg/rs.d.ts'
+/// <reference types='./pkg/rs.d.ts'/>
+import init, { rotate } from './pkg/rs.js'
 
 
 export default async (img: Uint8Array, deg: number): Promise<Uint8Array> => {
